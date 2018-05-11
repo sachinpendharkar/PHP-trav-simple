@@ -53,8 +53,11 @@ public class Docker_p {
 		
 		driver.findElement(By.name("username")).sendKeys("user@phptravels.com");
 		System.out.println("username entered");
+		
 		driver.findElement(By.name("password")).sendKeys("demouser");
-		driver.findElement(By.xpath("//*[@id='loginfrm']/div[1]/div[5]/button")).click();
+		System.out.println("pass entered");
+		driver.findElement(By.cssSelector("input[class='btn btn-action btn-lg btn-block loginbtn']")).click();
+		System.out.println("loggedin");
 		driver.findElement(By.xpath("//*[@id='bookings']/div[2]/div[4]/a")).click();
 		String x=driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
 				if(x.equals("Hi, DVhbCERv IlqEZZxz")){
