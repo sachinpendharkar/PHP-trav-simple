@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
@@ -38,8 +38,8 @@ public class Docker_p {
 	
 		/*System.setProperty("webdriver.chrome.driver","D:\\drivers\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver(); 
-		driver.manage().window().maximize();*/
-		
+		driver.manage().window().maximize();
+		*/
 		/*System.setProperty("webdriver.ie.driver","D:\\drivers\\IEDriverServer_Win32_3.0.0\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver(); 
 		driver.manage().window().maximize();
@@ -63,7 +63,8 @@ public class Docker_p {
 		System.out.println("pass entered");
 		driver.findElement(By.xpath("//*[@id='loginfrm']/div[1]/div[5]/button")).click();
 		System.out.println("loggedin");
-		driver.findElement(By.linkText("Bookings")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[1]/a")).click();
 		System.out.println("clicked on booking");
 		String x=driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
 				if(x.equals("Hi, DVhbCERv IlqEZZxz")){
