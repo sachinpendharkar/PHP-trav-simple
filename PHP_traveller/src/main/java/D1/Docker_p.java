@@ -5,55 +5,66 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Docker_p {
+	static WebDriver driver;
+	static String parent;
+	static String child;
 	
-	WebDriver driver;
+	//static WebDriverWait wait = new WebDriverWait(driver,1000);
+	
 	//String url="http://sparshv2/Pages/Home.aspx";
 	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
-	String url ="https://www.phptravels.net/login";
+	static String url ="https://www.phptravels.net/login";
 	//String url="https://www.google.co.in/";
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUp() throws Exception {
 		
 		DesiredCapabilities dcp = new DesiredCapabilities();
 		dcp.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
 		dcp.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
 		dcp.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, true);
 		dcp.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
+		
 		dcp.setCapability("name", "PHP");
+		
 		dcp.setCapability("idleTimeout", 150);
-		driver = new RemoteWebDriver(new URL("http://35.193.7.170:4444/wd/hub"),dcp);
+		
+		driver = new RemoteWebDriver(new URL("http://35.231.124.91:4444/wd/hub"),dcp);
 	
 		/*System.setProperty("webdriver.chrome.driver","D:\\drivers\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver(); 
-		driver.manage().window().maximize();
-		*/
+		driver.manage().window().maximize();*/
+		
 		/*System.setProperty("webdriver.ie.driver","D:\\drivers\\IEDriverServer_Win32_3.0.0\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver(); 
 		driver.manage().window().maximize();
 		*/
 		driver.get(url);
-		
 	}
-
-	
-	@Test
-	public void test() throws Exception {
-		//Thread.sleep(1000);
 		
-		System.out.println("Title:-"+driver.getTitle());
+		@Before 
+		public void before() throws Exception {
+			System.out.println("Title:-"+driver.getTitle());
+	
 		//Thread.sleep(1000);
 		
 		driver.findElement(By.name("username")).sendKeys("user@phptravels.com");
@@ -63,16 +74,28 @@ public class Docker_p {
 		System.out.println("pass entered");
 		driver.findElement(By.xpath("//*[@id='loginfrm']/div[1]/div[5]/button")).click();
 		System.out.println("loggedin");
-		Thread.sleep(1000);
-		driver.findElement(By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[1]/a")).click();
+		
+	}
+
+	
+	@Test
+	public void test1() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver,1000);
+		//Thread.sleep(1000);
+		//Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[1]/a"))).click();
+		//By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[1]/a")).click();
+		//driver.findElement(By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[1]/a")).click();
 		System.out.println("clicked on booking");
-		String x=driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
+		//String x=driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
+		String x=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3"))).getText();
 				if(x.equals("Hi, DVhbCERv IlqEZZxz")){
 					System.out.println("testcase1 passed-entered main page");
 				}
 				else{
 					System.out.println("testcase1 failed");
 				}
+				
 				driver.findElement(By.linkText("Invoice")).click();
 				
 				/*String  handle= driver.getWindowHandle();
@@ -81,12 +104,12 @@ public class Docker_p {
 				 Set<String> windows=driver.getWindowHandles();
 				 System.out.println(windows.size());
 					Iterator<String> it=windows.iterator();
-					String parent=it.next();
-					String child=it.next();
+					parent=it.next();
+					child=it.next();
 					driver.switchTo().window(child); 
-				
+				//System.out.println("");
 		//driver.navigate().to("http://www.phptravels.net/invoice?id=73&sessid=6897");
-		String b=driver.findElement(By.xpath("//*[@id='invoiceTable']/tbody/tr[4]/td/table/tbody/tr[2]/td/table[1]/tbody/tr[5]/td[1]/strong")).getText();
+		String b=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='invoiceTable']/tbody/tr[4]/td/table/tbody/tr[2]/td/table[1]/tbody/tr[5]/td[1]/strong"))).getText();
 		System.out.println(b);
 				 if(b.equalsIgnoreCase("Check out")){
 					 System.out.println("testcase passed");
@@ -97,14 +120,86 @@ public class Docker_p {
 				 }
 				
 		        driver.findElement(By.xpath("//*[@id='btn']")).click();
+		        System.out.println("download");
 	
 	}
+	@Test
+	public void test2() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver,1000);
+	//System.out.println("title"+driver.getTitle());
+	//driver.findElement(By.xpath("//*[@id='body-section']/div/div[3]/div/div[1]/ul/li[3]/a/span")).click();
+   // Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Wishlist"))).click();
+	//div[@id='body-section']/div/div[3]/div/div/ul/li[3]/a/span
+	System.out.println("wishlist");
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='wish6']/div[3]/a"))).click();
+	 Set<String> windows=driver.getWindowHandles();
+	 System.out.println(windows.size());
+		Iterator<String> it=windows.iterator();
+		it.next();
+		it.next();
+		String preview =it.next();
+		driver.switchTo().window(preview); 
+	String h= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='body-section']/div[2]/div/div/div[2]/div/span[1]/strong"))).getText();
+	if(h.equalsIgnoreCase("HYATT REGENCY PERTH")){
+		System.out.println("on preview page");
+			}else {
+				System.out.println("on home page");
+			}
+		
+	}
+	@Test
+	public void test3() throws Exception{
+		//Thread.sleep(1000);
+		WebDriverWait wait = new WebDriverWait(driver,1000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("My Profile"))).click();
+		String firstname= driver.findElement(By.name("firstname")).getAttribute("value");
+		System.out.println(firstname);
+		String lastname= driver.findElement(By.name("lastname")).getAttribute("value");
+		System.out.println(lastname);
+		String username= driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
+		
+	    String actual=username.substring(4, username.length());
+		System.out.println(actual);
+		if((firstname+" "+lastname).equalsIgnoreCase(actual)){
+			System.out.println("valid username");
+		}else{
+			System.out.println("invalid user");
+		}
+	}
+			
+	
+	
 	
 	@After
 	public void tearDown() throws Exception {
-		driver.quit();
+		WebDriverWait wait = new WebDriverWait(driver,1000);
+		driver.switchTo().window(parent);
+		System.out.println("Switched");
+		/*Select lg =new Select(driver.findElement(By.xpath("/html/body/div[5]/div/div/div[2]/ul/ul/li[1]/ul")));
+		System.out.println("elememt selected");
+		lg.selectByVisibleText("Logout");*/
+		//hread.sleep(1000);
+		//driver.findElement(By.xpath("/html/body/div[5]/div/div/div[2]/ul/ul/li[1]/ul")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(),'DVhbCERv')])[2]"))).click();
+		System.out.println("clicked");
+		driver.findElement(By.linkText("Logout")).click();
+		System.out.println("logout");
+		Thread.sleep(1000);
+		String s= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='loginfrm']/div[1]/div[1]"))).getText();
+		System.out.println("s="+s);
+		if(s.equalsIgnoreCase("Login")){
+			System.out.println("logout successful");
+			
+		}else{
+			System.out.println("logout failed");
+		}
 	}
 
-	
+	@AfterClass
+	public static void afterclass() throws Exception {
+		driver.quit();
+	}
+		
 
 }
