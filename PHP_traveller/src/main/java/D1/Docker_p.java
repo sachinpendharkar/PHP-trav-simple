@@ -80,6 +80,7 @@ public class Docker_p {
 	
 	@Test
 	public void test1() throws Exception {
+		//this is the first test
 		WebDriverWait wait = new WebDriverWait(driver,1000);
 		//Thread.sleep(1000);
 		//Thread.sleep(1000);
