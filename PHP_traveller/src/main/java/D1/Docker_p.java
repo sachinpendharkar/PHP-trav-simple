@@ -32,7 +32,7 @@ public class Docker_p {
 	//static WebDriverWait wait = new WebDriverWait(driver,1000);
 	
 	//String url="http://sparshv2/Pages/Home.aspx";
-	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
+m	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
 	static String url ="https://www.phptravels.net/login";
 	//String url="https://www.google.co.in/";
 	@BeforeClass
@@ -42,7 +42,7 @@ public class Docker_p {
 		dcp.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
 		dcp.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
 		dcp.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, true);
-		dcp.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
+m		dcp.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
 		
 		dcp.setCapability("name", "PHP");
 		
@@ -72,7 +72,7 @@ public class Docker_p {
 		
 		driver.findElement(By.name("password")).sendKeys("demouser");
 		System.out.println("pass entered");
-		driver.findElement(By.xpath("//*[@id='loginfr']/div[1]/div[5]/button")).click();
+		driver.findElement(By.xpath("//*[@id='loginfrm']/div[1]/div[5]/button")).click();
 		System.out.println("loggedin");
 		
 	}
@@ -90,15 +90,15 @@ public class Docker_p {
 		System.out.println("clicked on booking");
 		//String x=driver.findElement(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3")).getText();
 		String x=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='body-section']/div/div[1]/div/div[1]/h3"))).getText();
-				if(x.equals("Hi, DVhbCERv IlqEZZxz")){
+				if(x.equals("Hi, Johny Smith")){
 					System.out.println("testcase1 passed-entered main page");
 				}
 				else{
 					System.out.println("testcase1 failed");
 				}
 				
-				driver.findElement(By.linkText("Invoice")).click();
-				
+				//driver.findElement(By.linkText("Invoice")).click();
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='bookings']/div[2]/div[4]/a"))).click();
 				/*String  handle= driver.getWindowHandle();
 				 driver.switchTo().window("http://www.phptravels.net/invoice?id=73&sessid=6897");*/
 				 
@@ -182,7 +182,7 @@ public class Docker_p {
 		lg.selectByVisibleText("Logout");*/
 		//hread.sleep(1000);
 		//driver.findElement(By.xpath("/html/body/div[5]/div/div/div[2]/ul/ul/li[1]/ul")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(),'DVhbCERv')])[2]"))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='collapse']/ul[2]/ul/li[1]/a"))).click();
 		System.out.println("clicked");
 		driver.findElement(By.linkText("Logout")).click();
 		System.out.println("logout");
