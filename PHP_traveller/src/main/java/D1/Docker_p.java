@@ -32,7 +32,7 @@ public class Docker_p {
 	//static WebDriverWait wait = new WebDriverWait(driver,1000);
 	
 	//String url="http://sparshv2/Pages/Home.aspx";
-m	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
+	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
 	static String url ="https://www.phptravels.net/login";
 	//String url="https://www.google.co.in/";
 	@BeforeClass
@@ -42,7 +42,7 @@ m	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
 		dcp.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
 		dcp.setCapability(CapabilityType.PLATFORM, Platform.LINUX);
 		dcp.setCapability(CapabilityType.SUPPORTS_APPLICATION_CACHE, true);
-m		dcp.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
+		dcp.setCapability(CapabilityType.SUPPORTS_NETWORK_CONNECTION, true);
 		
 		dcp.setCapability("name", "PHP");
 		
