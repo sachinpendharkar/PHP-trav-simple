@@ -31,8 +31,6 @@ public class Docker_p {
 	
 	//static WebDriverWait wait = new WebDriverWait(driver,1000);
 	
-	//String url="http://sparshv2/Pages/Home.aspx";
-	//String url="http://10.67.89.41/Automation/HMS/LoginPage.aspx ";
 	static String url ="https://www.phptravels.net/login";
 	//String url="https://www.google.co.in/";
 	@BeforeClass
@@ -48,7 +46,7 @@ public class Docker_p {
 		
 		dcp.setCapability("idleTimeout", 150);
 		
-		driver = new RemoteWebDriver(new URL("http://35.193.7.170:4444/wd/hub"),dcp);
+		driver = new RemoteWebDriver(new URL("http://35.202.120.148:4444/wd/hub"),dcp);
 	
 		/*System.setProperty("webdriver.chrome.driver","D:\\drivers\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver(); 
