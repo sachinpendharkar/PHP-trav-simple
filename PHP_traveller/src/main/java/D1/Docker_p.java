@@ -108,7 +108,7 @@ public class Docker_p {
 					driver.switchTo().window(child); 
 				//System.out.println("");
 		//driver.navigate().to("http://www.phptravels.net/invoice?id=73&sessid=6897");
-		String b=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='invoiceTable']/tbody/tr[4]/td/table/tbody/tr[2]/td/table[1]/tbody/tr[5]/td[1]/strong"))).getText();
+		String b=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='invoiceTable']/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[5]/td/strong"))).getText();
 		System.out.println(b);
 				 if(b.equalsIgnoreCase("Check out")){
 					 System.out.println("testcase passed");
