@@ -46,7 +46,7 @@ public class Docker_p {
 		
 		dcp.setCapability("idleTimeout", 150);
 		
-		driver = new RemoteWebDriver(new URL("http://35.202.120.148:4444/wd/hub"),dcp);
+		driver = new RemoteWebDriver(new URL("http://104.155.135.94:4444/wd/hub"),dcp);
 	
 		/*System.setProperty("webdriver.chrome.driver","D:\\drivers\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver(); 
