@@ -46,11 +46,11 @@ public class Docker_p {
 		
 		dcp.setCapability("idleTimeout", 150);
 		
-		driver = new RemoteWebDriver(new URL("http://104.155.135.94:4444/wd/hub"),dcp);
+		driver = new RemoteWebDriver(new URL("http://35.190.187.1:4444/wd/hub"),dcp);
 	
 		/*System.setProperty("webdriver.chrome.driver","D:\\drivers\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver(); 
-		driver.manage().window().maximize();*/
+		driver.manage().window().maximize();*///http://35.190.187.1:4444/wd/hubhttp://104.155.135.94:4444/wd/hub
 		
 		/*System.setProperty("webdriver.ie.driver","D:\\drivers\\IEDriverServer_Win32_3.0.0\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver(); 
