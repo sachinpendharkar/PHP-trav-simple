@@ -122,7 +122,7 @@ public class Docker_p {
 		        System.out.println("download");
 	
 	}
-	@Test
+	/*@Test
 	public void test2() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver,1000);
 	//System.out.println("title"+driver.getTitle());
@@ -165,7 +165,7 @@ public class Docker_p {
 		}else{
 			System.out.println("invalid user");
 		}
-	}
+	}*/
 			
 	
 	
